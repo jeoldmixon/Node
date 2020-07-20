@@ -1,18 +1,19 @@
-# Title
-# desc
+# TITLE
     
-# install
+# DESCRIPTION
     
-# usage
+# INSTALLION
     
-# contr
+# USAGE
     
-# inst
+# CONTRIBUTION
     
-# APACHE,GPL,NONE
+# INSTRUCTIONS
     
-# git
+# NONE
     
-# email
+# GITHUB
+    
+# EMAIL@EMAIL.COM
     
     
