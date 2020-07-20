@@ -46,8 +46,14 @@ const questions = () => {
         },
         {
             type: 'input',
-            name: "Usage",
-            message: "Provide usage information"
+            name: 'usage',
+            message: 'Provide usage information',
+            validate: usage => {
+                if (usage) { return true; } else {
+                    console.log("Add usage information")
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
@@ -61,16 +67,52 @@ const questions = () => {
             }
         },
         {
-            type: "input",
-            name: "Test instructions",
-            message: "Provide test instructions"
+            type: 'input',
+            name: 'test',
+            message: 'Please add instrctions to test',
+            validate: test => {
+                if (test) { return true; } else {
+                    console.log("Add testing instructions");
+                    return false;
+                }
+            }
         },
         {
-            type: "checkbox",
-            name: "license",
-            message: "What license(s) would you like to add to this project?",
-            choices: ['MIT', 'APACHE', 'GPL', 'NONE']
+            type: 'confirm',
+            name: 'confirmLicense',
+            message: 'Would you like to add a license',
+            default: true
+
         },
+        {
+            type: 'checkbox',
+            name: 'checkboxLicense',
+            message: 'What license(s) would you like to add to this project?',
+            choices: ['MIT', 'APACHE', 'GPL', 'NONE'],
+            when: ({ confirmLicense }) => confirmLicense
+        },
+        {
+            type: 'input',
+            name: 'github',
+            message: 'What is your GitHub name',
+            validate: github => {
+                if (github) { return true; } else {
+                    console.log("Enter GitHub name");
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Email address',
+            validate: email => {
+                if (email) { return true; } else {
+                    console.log("Enter your email");
+                    return false;
+                }
+            }
+        }
 
     ]);
 }
