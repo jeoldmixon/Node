@@ -1,4 +1,4 @@
-const Choice = require("inquirer/lib/objects/choice");
+// const Choice = require("inquirer/lib/objects/choice");
 const generateMarkdown = require('./utils/generateMarkdown');
 const fs = require('fs');
 const { title } = require("process");
@@ -28,11 +28,6 @@ const questions = () => {
                 }
             }
         },
-        // {
-        //     type: 'input',
-        //     name: 'Table of Contents',
-        //     message: 'Provide a table of contents for the project'
-        // },
         {
             type: 'input',
             name: 'installation',
@@ -118,12 +113,20 @@ const questions = () => {
 }
 
 // function to write README file
-function writeToFile(fileName, data) {}
+questions()
+    .then(projectInfo => { return generateMarkdown(projectInfo); })
+    .then(readmeFile => { return fs.writeFile(readmeFile); })
+    .catch(err => { console.log(err); });
+
+// question.().then(..........)
+// function writeToFile(fileName, data) {
+//     // fs.writeFile('./readme.md', data, err)
+// }
 
 // function to initialize program
-function init() {
+// function init() {
 
-}
+// }
 
 // function call to initialize program
-init();
+// init();
