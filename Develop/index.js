@@ -1,7 +1,5 @@
-// const Choice = require("inquirer/lib/objects/choice");
 const generateMarkdown = require('./utils/generateMarkdown');
 const fs = require('fs');
-const { title } = require("process");
 const inquirer = require("inquirer");
 
 // array of questions for user=
@@ -52,7 +50,7 @@ const questions = () => {
         },
         {
             type: 'input',
-            name: 'Contribution guidelines',
+            name: 'contrib',
             message: 'Provide contribution guidelines',
             validate: guideline => {
                 if (guideline) { return true; } else {
@@ -72,19 +70,13 @@ const questions = () => {
                 }
             }
         },
-        {
-            type: 'confirm',
-            name: 'confirmLicense',
-            message: 'Would you like to add a license',
-            default: true
 
-        },
         {
             type: 'checkbox',
             name: 'checkboxLicense',
             message: 'What license(s) would you like to add to this project?',
             choices: ['MIT', 'APACHE', 'GPL', 'NONE'],
-            when: ({ confirmLicense }) => confirmLicense
+
         },
         {
             type: 'input',
@@ -115,18 +107,10 @@ const questions = () => {
 // function to write README file
 questions()
     .then(projectInfo => { return generateMarkdown(projectInfo); })
-    .then(readmeFile => { return fs.writeFile(readmeFile); })
+    .then(readmeFile => {
+        return fs.writeFile('readme.md', readmeFile, function(err) {
+            if (err) throw err;
+            console.log('Saved');
+        });
+    })
     .catch(err => { console.log(err); });
-
-// question.().then(..........)
-// function writeToFile(fileName, data) {
-//     // fs.writeFile('./readme.md', data, err)
-// }
-
-// function to initialize program
-// function init() {
-
-// }
-
-// function call to initialize program
-// init();
